@@ -1,1 +1,32 @@
-script: ./travis-runner.sh
+language: python
+
+python: 3.6
+install:
+    - echo "NOTHING!!"
+
+stages:
+    - name: stage1
+    - name: stage2
+
+jobs:
+    include:
+        - stage: stage1
+          script:
+              - echo "STAGE1 script 1"
+              - ls
+        - stage: stage1
+          script:
+              - echo "STAGE1 script 2"
+              - ls
+        - stage: stage2
+          script:
+              - echo "STAGE2 script 1"
+              - ls
+        - stage: stage2
+          script: 
+              - echo "STAGE2 script 2 (travis-runner)"
+              - ./travis-runner.sh
+
+after_success:
+    - echo "AFTER SUCCESS"
+    - ls
